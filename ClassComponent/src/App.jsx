@@ -1,11 +1,15 @@
 import "./App.css";
 import React, { Component } from "react";
+import Props from "./components/Props";
 class App extends Component {
   render() {
     return (
       <>
-        <h1>Ha bhai Class Compoenent</h1>
-        <p>Dekh bhai Seekhay ga to kaam aye ga teray</p>
+        {/* <h1>Ha bhai Class Compoenent</h1>
+        <p>Dekh bhai Seekhay ga to kaam aye ga teray</p> */}
+        <Props name="Mohsin" age={20} />
+        <Props name="Muneeb" age={19} />
+        <Props name="Taha" age={20} />
       </>
     );
   }
