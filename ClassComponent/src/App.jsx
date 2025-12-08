@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Props from "./components/Props";
 import Student from "./components/Student";
 import Employee from "./components/Employee";
+import EventHandler from "./components/EventHandler";
+import BindingEvent from "./components/BindingEvent";
 class App extends Component {
   render() {
     return (
@@ -13,7 +15,9 @@ class App extends Component {
         <Props name="Muneeb" age={19} />
         <Props name="Taha" age={20} /> */}
         {/* <Student name="Mohsin"/> */}
-        <Employee name="Hassan" age={23} />
+        {/* <Employee name="Hassan" age={23} /> */}
+        {/* <EventHandler name="Muneeb" /> */}
+        <BindingEvent />
       </>
     );
   }
