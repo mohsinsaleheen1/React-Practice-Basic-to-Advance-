@@ -5,6 +5,10 @@ import Student from "./components/Student";
 import Employee from "./components/Employee";
 import EventHandler from "./components/EventHandler";
 import BindingEvent from "./components/BindingEvent";
+import MoutingCom from "./components/MoutingCom";
+import Updating1 from "./components/Updating1";
+import Person from "./components/Person";
+import ParentClass from "./components/ParentClass";
 class App extends Component {
   render() {
     return (
@@ -17,7 +21,11 @@ class App extends Component {
         {/* <Student name="Mohsin"/> */}
         {/* <Employee name="Hassan" age={23} /> */}
         {/* <EventHandler name="Muneeb" /> */}
-        <BindingEvent />
+        {/* <BindingEvent /> */}
+        {/* <MoutingCom city="Karachi" /> */}
+        {/* <Updating1 /> */}
+        {/* <Person city="Karachi" /> */}
+        <ParentClass />
       </>
     );
   }
