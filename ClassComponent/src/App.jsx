@@ -9,6 +9,8 @@ import MoutingCom from "./components/MoutingCom";
 import Updating1 from "./components/Updating1";
 import Person from "./components/Person";
 import ParentClass from "./components/ParentClass";
+import Stylesheet1 from "./components/Stylesheet1";
+import Stylesheet2 from "./components/Stylesheet2";
 class App extends Component {
   render() {
     return (
@@ -25,7 +27,9 @@ class App extends Component {
         {/* <MoutingCom city="Karachi" /> */}
         {/* <Updating1 /> */}
         {/* <Person city="Karachi" /> */}
-        <ParentClass />
+        {/* <ParentClass /> */}
+        <Stylesheet1 />
+        <Stylesheet2 />
       </>
     );
   }
