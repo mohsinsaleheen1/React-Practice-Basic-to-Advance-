@@ -11,6 +11,7 @@ import Person from "./components/Person";
 import ParentClass from "./components/ParentClass";
 import Stylesheet1 from "./components/Stylesheet1";
 import Stylesheet2 from "./components/Stylesheet2";
+import Usestate from "./components/Hooks/Usestate";
 class App extends Component {
   render() {
     return (
@@ -28,8 +29,9 @@ class App extends Component {
         {/* <Updating1 /> */}
         {/* <Person city="Karachi" /> */}
         {/* <ParentClass /> */}
-        <Stylesheet1 />
-        <Stylesheet2 />
+        {/* <Stylesheet1 />
+        <Stylesheet2 /> */}
+        <Usestate />
       </>
     );
   }
