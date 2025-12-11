@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 // import Usestate from "./Usestate";
-
 const USwitharray = () => {
   const num = [22, 12, 32, 34, 42];
   const [number, setNumber] = useState(num);
