@@ -12,6 +12,8 @@ import ParentClass from "./components/ParentClass";
 import Stylesheet1 from "./components/Stylesheet1";
 import Stylesheet2 from "./components/Stylesheet2";
 import Usestate from "./components/Hooks/Usestate";
+import USwithObject from "./components/Hooks/USwithObject";
+import USwitharray from "./components/Hooks/USwitharray";
 class App extends Component {
   render() {
     return (
@@ -31,7 +33,9 @@ class App extends Component {
         {/* <ParentClass /> */}
         {/* <Stylesheet1 />
         <Stylesheet2 /> */}
-        <Usestate />
+        {/* <Usestate /> */}
+        {/* <USwithObject /> */}
+        <USwitharray />
       </>
     );
   }
