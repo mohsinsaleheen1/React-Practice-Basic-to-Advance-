@@ -14,6 +14,7 @@ import Stylesheet2 from "./components/Stylesheet2";
 import Usestate from "./components/Hooks/Usestate";
 import USwithObject from "./components/Hooks/USwithObject";
 import USwitharray from "./components/Hooks/USwitharray";
+import UseEffectPrac from "./components/Hooks/UseEffectPrac";
 class App extends Component {
   render() {
     return (
@@ -35,7 +36,8 @@ class App extends Component {
         <Stylesheet2 /> */}
         {/* <Usestate /> */}
         {/* <USwithObject /> */}
-        <USwitharray />
+        {/* <USwitharray /> */}
+        <UseEffectPrac />
       </>
     );
   }
