@@ -15,6 +15,8 @@ import Usestate from "./components/Hooks/Usestate";
 import USwithObject from "./components/Hooks/USwithObject";
 import USwitharray from "./components/Hooks/USwitharray";
 import UseEffectPrac from "./components/Hooks/UseEffectPrac";
+import CompA from "./components/contexthook/CompA";
+import CompMain from "./components/contexthook/CompMain";
 class App extends Component {
   render() {
     return (
@@ -37,7 +39,9 @@ class App extends Component {
         {/* <Usestate /> */}
         {/* <USwithObject /> */}
         {/* <USwitharray /> */}
-        <UseEffectPrac />
+        {/* <UseEffectPrac /> */}
+        {/* <CompA/> */}
+        <CompMain />
       </>
     );
   }
