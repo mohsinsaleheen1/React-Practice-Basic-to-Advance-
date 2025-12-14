@@ -17,6 +17,7 @@ import USwitharray from "./components/Hooks/USwitharray";
 import UseEffectPrac from "./components/Hooks/UseEffectPrac";
 import CompA from "./components/contexthook/CompA";
 import CompMain from "./components/contexthook/CompMain";
+import ControlledComClass from "./components/Forms/ControlledComClass";
 class App extends Component {
   render() {
     return (
@@ -41,7 +42,8 @@ class App extends Component {
         {/* <USwitharray /> */}
         {/* <UseEffectPrac /> */}
         {/* <CompA/> */}
-        <CompMain />
+        {/* <CompMain /> */}
+        <ControlledComClass />
       </>
     );
   }
