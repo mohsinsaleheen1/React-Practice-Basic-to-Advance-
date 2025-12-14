@@ -22,6 +22,7 @@ import ControlledComFun from "./components/Forms/ControlledComFun";
 import Handlemultipleform from "./components/Forms/Handlemultipleform";
 import Otherinouts from "./components/Forms/Otherinouts";
 import MultipleChecks from "./components/Forms/MultipleChecks";
+import RefComp from "./components/refComp/RefComp";
 class App extends Component {
   render() {
     return (
@@ -51,7 +52,8 @@ class App extends Component {
         {/* <ControlledComFun /> */}
         {/* <Handlemultipleform /> */}
         {/* <Otherinouts /> */}
-        <MultipleChecks />
+        {/* <MultipleChecks /> */}
+        <RefComp />
       </>
     );
   }
