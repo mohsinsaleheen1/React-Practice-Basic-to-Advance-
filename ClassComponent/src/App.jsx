@@ -18,6 +18,10 @@ import UseEffectPrac from "./components/Hooks/UseEffectPrac";
 import CompA from "./components/contexthook/CompA";
 import CompMain from "./components/contexthook/CompMain";
 import ControlledComClass from "./components/Forms/ControlledComClass";
+import ControlledComFun from "./components/Forms/ControlledComFun";
+import Handlemultipleform from "./components/Forms/Handlemultipleform";
+import Otherinouts from "./components/Forms/Otherinouts";
+import MultipleChecks from "./components/Forms/MultipleChecks";
 class App extends Component {
   render() {
     return (
@@ -43,7 +47,11 @@ class App extends Component {
         {/* <UseEffectPrac /> */}
         {/* <CompA/> */}
         {/* <CompMain /> */}
-        <ControlledComClass />
+        {/* <ControlledComClass /> */}
+        {/* <ControlledComFun /> */}
+        {/* <Handlemultipleform /> */}
+        {/* <Otherinouts /> */}
+        <MultipleChecks />
       </>
     );
   }
