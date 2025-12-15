@@ -12,8 +12,8 @@ export default class RefComp extends Component {
   handleHeading = () => {
     // this.myRef.current.align = "right";
     // this.myRef.current.hidden = true;
-    this.myRef.current.style.color = "red";
-    this.myRef.current.style.backgroundColor = "Yellow";
+    this.myRef.current.style.color = "yellow";
+    this.myRef.current.style.backgroundColor = "red";
   };
   render() {
     return (
