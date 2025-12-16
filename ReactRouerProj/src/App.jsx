@@ -8,6 +8,8 @@ import PageNotFound from "./Component/PageNotFound";
 import Products from "./Component/Products";
 import Shirts from "./Component/Shirts";
 import Jeans from "./Component/Jeans";
+import Users from "./Component/Users";
+import UserDetail from "./Component/UserDetail";
 function App() {
   // const navigate = useNavigate();
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="shirts" element={<Shirts />} />
           <Route path="jeans" element={<Jeans />} />
         </Route>
+        <Route path="/user" element={<Users />} />
+        <Route path="/user/:id" element={<UserDetail />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       {/* <button onClick={() => navigate("/about")}>About</button>
