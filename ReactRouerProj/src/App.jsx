@@ -10,6 +10,7 @@ import Shirts from "./Component/Shirts";
 import Jeans from "./Component/Jeans";
 import Users from "./Component/Users";
 import UserDetail from "./Component/UserDetail";
+import Search from "./Component/Search";
 function App() {
   // const navigate = useNavigate();
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/products" element={<Products />}>
           <Route path="shirts" element={<Shirts />} />
           <Route path="jeans" element={<Jeans />} />
