@@ -1,4 +1,5 @@
 const users = require("../models/user.js");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const register = async (req, res) => {
   try {
@@ -31,16 +32,35 @@ const login = async (req, res) => {
     const { userEmail, userPassword } = req.body;
     const findUser = await users.findOne({ userEmail });
     if (!findUser) return res.send({ status: 404, message: "User Not Found" });
-    const machpass = bcrypt.compare(userPassword, findUser.userPassword);
+    const machpass = await bcrypt.compare(userPassword, findUser.userPassword);
     if (!machpass)
       return res.send({ status: 401, message: "Inavlid Email or password" });
-    res.send({ status: 200, message: "User Login Sucessfully" });
+
+    const payload = {
+      userid: findUser.id,
+      username: findUser.userName,
+    };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    res.send({
+      status: 200,
+      token,
+      message: "User Login Sucessfully",
+    });
   } catch (err) {
     res.send({
       status: 500,
       message: err.message,
     });
   }
+};
+const home = async (req, res) => {
+  res.send({
+    status: 200,
+    message: "Welcome Home",
+    user: req.user,
+  });
 };
 const logout = async (req, res) => {
   try {
@@ -48,8 +68,7 @@ const logout = async (req, res) => {
     res.send({
       status: 500,
       message: err.message,
-      message: err.message,
     });
   }
 };
-module.exports = { register, login, logout };
+module.exports = { register, login, logout, home };

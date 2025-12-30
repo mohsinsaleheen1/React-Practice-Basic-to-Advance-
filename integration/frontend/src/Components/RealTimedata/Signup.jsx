@@ -30,36 +30,45 @@ const SignupForm = () => {
   }, [shouldSignup, userEmail, userPassword, userName]);
 
   return (
-    <div>
-      <input
-        type="email"
-        placeholder="Email"
-        value={userEmail}
-        onChange={(e) => setUserEmail(e.target.value)}
-      />
-      <input
-        type="fname"
-        placeholder="first name"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={userPassword}
-        onChange={(e) => setUserPassword(e.target.value)}
-      />
-      <br />
-      <button
-        onClick={() => setShouldSignup(true)}
-        disabled={isLoading || !userEmail || !userPassword || !userName}
-      >
-        {isLoading ? "Signup in..." : "Signup"}
-      </button>
+    <>
+      <div className="flex flex-col border border-[1px] w-[400px] px-5 py-5 border-gray-400  rounded-md shadow-md">
+        <h1 className="text-center text-2xl font-bold text-gray-600 pb-7">
+          SIGNUP FORM
+        </h1>
+        <input
+          type="email"
+          placeholder="Email"
+          className="border border-[1px] py-1 px-1 my-2 w-[100%] outline-0 rounded-[4px] border-gray-300"
+          value={userEmail}
+          onChange={(e) => setUserEmail(e.target.value)}
+        />
+        <input
+          type="fname"
+          placeholder="first name"
+          className="border border-[1px] py-1 px-1 my-2 w-[100%] outline-0 rounded-[4px] border-gray-300"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className="border border-[1px] py-1 px-1 my-2 w-[100%] outline-0 rounded-[4px] border-gray-300"
+          value={userPassword}
+          onChange={(e) => setUserPassword(e.target.value)}
+        />
+        <br />
+        <button
+          className="bg-blue-500 rounded-md py-[4px] uppercase text-white cursor-pointer"
+          onClick={() => setShouldSignup(true)}
+          disabled={isLoading || !userEmail || !userPassword || !userName}
+        >
+          {isLoading ? "Signup in..." : "Signup"}
+        </button>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {user && <h2>Welcome, {user.user.userName}</h2>}
-    </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        {user && <h2>Welcome, {user.user.userName}</h2>}
+      </div>
+    </>
   );
 };
 
