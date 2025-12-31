@@ -1,11 +1,15 @@
 import SignupForm from "./Components/RealTimedata/Signup";
-
+import { Routes, Route } from "react-router";
+import { Signup } from "./services/auth/auth";
+import Login from "./Components/RealTimedata/Login";
 function App() {
   return (
     <>
-      <div className="flex justify-center items-center w-[100%] h-[100vh]">
-        <SignupForm />
-      </div>
+      <Routes>
+        <Route path="/" element={<SignupForm />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+     
     </>
   );
 }
