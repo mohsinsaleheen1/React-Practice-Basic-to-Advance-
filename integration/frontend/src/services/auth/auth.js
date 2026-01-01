@@ -46,4 +46,22 @@ export async function signin(userEmail, userPassword) {
     throw error;
   }
 }
-export async function Dashboard(params) {}
+export async function DashboardWellcome() {
+  try {
+    const token = localStorage.getItem("userToken");
+    const data = await apiRequest({
+      url: `http://localhost:3000/api/home`,
+      params: {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("Unauthorized Person", error.message);
+    throw error;
+  }
+}

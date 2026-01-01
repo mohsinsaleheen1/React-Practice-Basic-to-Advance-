@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { signin } from "../../services/auth/auth";
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 const Login = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [shouldLogin, setShouldLogin] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!shouldLogin) return;
     const handleLogin = async () => {
@@ -16,6 +18,11 @@ const Login = () => {
         setError(null);
         const userData = await signin(userEmail, userPassword);
         console.log(userData);
+        if (userData.status == 200) {
+          navigate("/navbar/home");
+        } else {
+          navigate("/login");
+        }
       } catch (error) {
         setError(error.message || "Login failed");
       } finally {

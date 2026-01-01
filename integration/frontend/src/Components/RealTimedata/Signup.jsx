@@ -12,10 +12,6 @@ const SignupForm = () => {
   const [userName, setUserName] = useState("");
   const [shouldSignup, setShouldSignup] = useState(false);
   console.log("User Name is", user);
-  const signupFun = () => {
-    setShouldSignup(true);
-    navigate("/login");
-  };
 
   useEffect(() => {
     if (!shouldSignup) return;
@@ -25,6 +21,7 @@ const SignupForm = () => {
         setError(null);
         const userData = await Signup(userName, userEmail, userPassword);
         setUser(userData);
+        navigate("/login");
       } catch (err) {
         setError(err.message || "Signup failed");
         setUser(null);
@@ -68,13 +65,16 @@ const SignupForm = () => {
           <br />
           <button
             className="bg-blue-500 rounded-md py-[4px] uppercase text-white cursor-pointer"
-            onClick={() => signupFun()}
+            onClick={() => setShouldSignup(true)}
             disabled={isLoading || !userEmail || !userPassword || !userName}
           >
             {isLoading ? "Signup in..." : "Signup"}
           </button>
           <p className="text-[14px] py-3 text-center">
-            Already Have Account ? <Link to="/login" className="font-bold">Login here</Link>
+            Already Have Account ?{" "}
+            <Link to="/login" className="font-bold">
+              Login here
+            </Link>
           </p>
           {error && <p style={{ color: "red" }}>{error}</p>}
           {user && <h2>Welcome, {user.user.userName}</h2>}

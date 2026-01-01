@@ -56,10 +56,11 @@ const login = async (req, res) => {
   }
 };
 const home = async (req, res) => {
+  const user = await req.user;
   res.send({
     status: 200,
     message: "Welcome Home",
-    user: req.user,
+    user: user,
   });
 };
 const logout = async (req, res) => {
