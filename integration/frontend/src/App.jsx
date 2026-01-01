@@ -1,6 +1,5 @@
 import SignupForm from "./Components/RealTimedata/Signup";
 import { Routes, Route } from "react-router";
-import { Signup } from "./services/auth/auth";
 import Login from "./Components/RealTimedata/Login";
 import Navbar from "./Components/layout/Navbar";
 import Dashboard from "./Components/RealTimedata/Dashboard";

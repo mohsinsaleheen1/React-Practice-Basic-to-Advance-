@@ -9,7 +9,6 @@ const Login = () => {
   const [shouldLogin, setShouldLogin] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
   useEffect(() => {
     if (!shouldLogin) return;
     const handleLogin = async () => {
@@ -21,6 +20,7 @@ const Login = () => {
         if (userData.status == 200) {
           navigate("/navbar/home");
         } else {
+          alert("Invalid email or password");
           navigate("/login");
         }
       } catch (error) {

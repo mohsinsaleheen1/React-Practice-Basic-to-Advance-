@@ -1,7 +1,16 @@
 import React from "react";
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useNavigate } from "react-router";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("userToken");
+  if(!token){
+     navigate("/login");
+  }
+  const logout = () => {
+    localStorage.removeItem("userToken");
+    navigate("/login");
+  };
   return (
     <>
       <div className="flex justify-between items-center bg-blue-100 py-3 px-6 shadow-md">
@@ -17,7 +26,10 @@ const Navbar = () => {
             Contact
           </Link>
         </div>
-        <button className="bg-blue-800 hover:bg-blue-700 cursor-pointer py-2 px-4 border-0 rounded-md text-white">
+        <button
+          className="bg-blue-800 hover:bg-blue-700 cursor-pointer py-2 px-4 border-0 rounded-md text-white"
+          onClick={() => logout()}
+        >
           Logout
         </button>
       </div>

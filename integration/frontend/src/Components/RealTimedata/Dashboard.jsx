@@ -19,8 +19,8 @@ const Dashboard = () => {
       } catch (error) {
         localStorage.removeItem("userToken");
         navigate("/login", { replace: true });
-      }
-    };
+      };
+    }
     fetchUser();
   }, []);
   if (!user) {
@@ -35,5 +35,4 @@ const Dashboard = () => {
     </>
   );
 };
-
 export default Dashboard;
