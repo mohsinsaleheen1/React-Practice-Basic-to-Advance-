@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
-
+import { useNavigate, Link } from "react-router";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from "./firebase";
+const auth = getAuth(app);
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -8,7 +10,19 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
   const signupForm = () => {
-    navigate("/login");
+    if (!firstName || !lastName || !email || !password) {
+      alert("Please Fill All Field");
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((value) => {
+          console.log(value);
+          navigate("/login");
+        })
+        .catch((err) => {
+          alert(err);
+          console.log(err);
+        });
+    }
   };
   return (
     <>
@@ -49,6 +63,12 @@ const Signup = () => {
           >
             Submit
           </button>
+          <p className="text-center text-sm pt-5">
+            Already have account{" "}
+            <Link to="/login" className="text-blue-700">
+              login here
+            </Link>
+          </p>
         </div>
       </div>
     </>

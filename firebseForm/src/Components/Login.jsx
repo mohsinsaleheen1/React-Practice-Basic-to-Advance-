@@ -1,12 +1,28 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "./firebase";
+const auth = getAuth(app);
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const loginForm = () => {
-    navigate("/home");
+    if (!email || !password) {
+      alert("Please fill all fields");
+    } else {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((value) => {
+          const user = value.user;
+          console.log(user);
+          navigate("/home");
+        })
+        .catch((err) => {
+          alert(err);
+          console.log(err);
+        });
+    }
   };
   return (
     <>
@@ -33,6 +49,12 @@ const Login = () => {
           >
             Submit
           </button>
+          <p className="text-center text-sm pt-5">
+            Don't have any account{" "}
+            <Link to="/" className="text-blue-700">
+              Signup here
+            </Link>
+          </p>
         </div>
       </div>
     </>
