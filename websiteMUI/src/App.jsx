@@ -1,12 +1,11 @@
-import InputField from "./Components/InputField";
-import Applayout from "./Components/layout/Applayout";
-import Singup from "./Container/Singup/Singup";
+import Buttons from "./Components/Button/Buttons";
+import AutoComplete from "./Components/AutoComplete/AutoComplete";
 
 function App() {
   return (
     <>
-      <Applayout />
-      <Singup />
+        <AutoComplete />
+        <Buttons />
     </>
   );
 }
