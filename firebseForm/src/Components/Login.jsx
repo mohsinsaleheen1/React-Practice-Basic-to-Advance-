@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "./firebase";
+import InputFiled from "./InputFiled";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 const auth = getAuth(app);
 
 const Login = () => {
@@ -26,37 +28,57 @@ const Login = () => {
   };
   return (
     <>
-      <div className="flex justify-center items-center w-[100%] h-[100vh]">
-        <div className="flex flex-col w-[400px] rounded-md shadow-md px-7 py-5">
-          <h1 className="text-2xl text-center text-blue-600">LOGIN FORM</h1>
-          <input
-            className="py-1 px-1 my-3 bg-gray-100 rounded-sm"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="example@gmail.com"
-          />
-          <input
-            type="password"
-            className="py-1 px-1 my-3 bg-gray-100 rounded-sm"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter Password"
-          />
-          <button
-            onClick={loginForm}
-            className="bg-blue-800 py-1 rounded-md text-white mt-4 cursor-pointer"
+      <Box
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "#f5f5f5",
+        }}
+      >
+        <Container maxWidth="sm">
+          <Box
+            sx={{
+              p: 4,
+              boxShadow: 3,
+              borderRadius: 2,
+              bgcolor: "white",
+            }}
           >
-            Submit
-          </button>
-          <p className="text-center text-sm pt-5">
-            Don't have any account{" "}
-            <Link to="/" className="text-blue-700">
-              Signup here
-            </Link>
-          </p>
-        </div>
-      </div>
+            <Typography variant="h5" textAlign="center" color="primary" mb={2}>
+              LOGIN FORM
+            </Typography>
+            <Stack spacing={2}>
+              <InputFiled
+                label={"Email"}
+                value={email}
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <InputFiled
+                label={"Password"}
+                value={password}
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Button
+                variant="contained"
+                sx={{ marginTop: "20px" }}
+                onClick={loginForm}
+              >
+                Login
+              </Button>
+              <Typography textAlign="center" variant="body2">
+                Don't have account?{" "}
+                <Link to="/" style={{ color: "#1976d2" }}>
+                  Signup Here
+                </Link>
+              </Typography>
+            </Stack>
+          </Box>
+        </Container>
+      </Box>
     </>
   );
 };

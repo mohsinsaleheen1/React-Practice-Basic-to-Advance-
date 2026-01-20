@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "./firebase";
+import InputFiled from "./InputFiled";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 const auth = getAuth(app);
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -26,51 +28,63 @@ const Signup = () => {
   };
   return (
     <>
-      <div className="flex justify-center items-center w-[100%] h-[100vh]">
-        <div className="flex flex-col w-[400px] rounded-md shadow-md px-7 py-5">
-          <h1 className="text-2xl text-center text-blue-600">SINGUP FORM</h1>
-          <input
-            className="py-1 px-1 my-3 bg-gray-100 rounded-sm"
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            placeholder="First Name"
-          />
-          <input
-            className="py-1 px-1 my-3 bg-gray-100 rounded-sm"
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            placeholder="Last Name"
-          />
-          <input
-            className="py-1 px-1 my-3 bg-gray-100 rounded-sm"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="example@gmail.com"
-          />
-          <input
-            type="password"
-            className="py-1 px-1 my-3 bg-gray-100 rounded-sm"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button
-            className="bg-blue-800 py-1 rounded-md text-white mt-4 cursor-pointer"
-            onClick={signupForm}
+      <Box
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "#f5f5f5",
+        }}
+      >
+        <Container maxWidth="sm">
+          <Box
+            sx={{
+              p: 4,
+              boxShadow: 3,
+              borderRadius: 2,
+              bgcolor: "white",
+            }}
           >
-            Submit
-          </button>
-          <p className="text-center text-sm pt-5">
-            Already have account{" "}
-            <Link to="/login" className="text-blue-700">
-              login here
-            </Link>
-          </p>
-        </div>
-      </div>
+            <Typography variant="h5" textAlign="center" color="primary" mb={2}>
+              SIGNUP FORM
+            </Typography>
+            <Stack spacing={2}>
+              <InputFiled
+                label={"FirstName"}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <InputFiled
+                label={"LastName"}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              <InputFiled
+                label={"Email"}
+                value={email}
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <InputFiled
+                label={"Password"}
+                value={password}
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Button variant="contained" onClick={signupForm}>
+                Signup
+              </Button>
+              <Typography textAlign="center" variant="body2">
+                Already have an account?{" "}
+                <Link to="/login" style={{ color: "#1976d2" }}>
+                  Login here
+                </Link>
+              </Typography>
+            </Stack>
+          </Box>
+        </Container>
+      </Box>
     </>
   );
 };
