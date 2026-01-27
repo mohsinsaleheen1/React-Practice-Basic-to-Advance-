@@ -1,46 +1,43 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import InputFields from "../Components/InputField";
 import Buttons from "../Components/Button";
-import { UserContext } from "../Contexts/AuthContext";
-const Signup = () => {
-  const { setUser } = useContext(UserContext);
+import { Signup } from "../Services/Auth/SignupAuth";
+const SignupForm = () => {
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  const signupForm = async () => {
-    if (!firstname || !lastname || !email || !password) {
-      alert("Please Fill All Fields");
-      return;
-    }
-    if (!email.includes("@")) {
-      alert("Please Enter Correct Email");
-      return;
-    }
-    const userData = { firstname, lastname, email, password };
-    try {
-      const response = await fetch("http://localhost:3000/api/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        console.log(data);
-        setUser(data.user);
-        alert("Account Created!");
-        navigate("/login");
-      } else {
-        alert("Signup Failed");
+  const [shouldSignup, setShouldSignup] = useState(false);
+  useEffect(() => {
+    if (!shouldSignup) return;
+    const handleSignup = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const userData = await Signup({
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          password: password,
+        });
+        console.log(userData);
+        setUser(userData);
+      } catch (err) {
+        setError(err.message || "Signup Failed");
+        setUser(null);
+      } finally {
+        setIsLoading(false);
+        setShouldSignup(false);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    };
+    handleSignup();
+  }, [shouldSignup, email, password]);
+
   return (
     <>
       <Box
@@ -52,7 +49,7 @@ const Signup = () => {
           bgcolor: "#f5f5f5",
         }}
       >
-        <Container maxWidth="sm">
+        <Container maxWidth="xs">
           <Box
             sx={{
               p: 4,
@@ -87,13 +84,18 @@ const Signup = () => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Buttons onClick={signupForm} value="Signup" />
+              <Buttons
+                onClick={() => setShouldSignup(true)}
+                value={isLoading ? "Signup in..." : "Signup"}
+              />
               <Typography textAlign="center" variant="body2">
                 Already have an account?{" "}
-                <Link to="/login" style={{ color: "#1976d2" }}>
+                <Link to="login" style={{ color: "#1976d2" }}>
                   Login here
                 </Link>
               </Typography>
+              {error && <p style={{ color: "red" }}>{error}</p>}
+              {user && <h2>Welcome, {user.savedUser.firstname}</h2>}
             </Stack>
           </Box>
         </Container>
@@ -102,4 +104,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupForm;

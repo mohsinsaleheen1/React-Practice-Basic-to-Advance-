@@ -1,17 +1,20 @@
 import { Route, Routes } from "react-router";
-import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
 import { UserProvider } from "./Contexts/AuthContext";
+import Profile from "./Pages/Profile";
+import SignupForm from "./Pages/Signup";
 
 function App() {
   return (
     <>
       <UserProvider>
         <Routes>
-          <Route path="/" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />}>
+            <Route path="signup" element={<SignupForm />} />
+            <Route path="login" element={<Login />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
         </Routes>
       </UserProvider>
     </>

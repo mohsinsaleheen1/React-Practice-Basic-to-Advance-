@@ -1,20 +1,13 @@
-import { Container, Typography } from "@mui/material";
-import React, { useContext } from "react";
-import { UserContext } from "../Contexts/AuthContext";
+import React from "react";
+import { Outlet } from "react-router";
+import ResponsiveAppBar from "../Components/Navbar/Navbar";
 
 const Home = () => {
-  const { user } = useContext(UserContext);
   return (
-    <>
-      <Container>
-        <Typography variant="h4" mt={5}>
-          Welcome, {user ? `${user.firstname} ${user.lastname}` : "Guest"}!
-        </Typography>
-        {user && (
-          <Typography variant="body1">Your Email: {user.email}</Typography>
-        )}
-      </Container>
-    </>
+    <div>
+      <ResponsiveAppBar />
+      <Outlet />
+    </div>
   );
 };
 
