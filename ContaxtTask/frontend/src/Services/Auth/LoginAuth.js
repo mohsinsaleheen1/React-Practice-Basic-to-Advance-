@@ -11,7 +11,7 @@ export const loginUsers = async (email, password) => {
     });
     return data;
   } catch (error) {
-    console.log("Signup Failed:", error.message);
+    console.log("Login Failed:", error.message);
     throw error;
   }
 };

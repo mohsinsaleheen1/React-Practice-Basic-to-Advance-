@@ -13,9 +13,8 @@ const Login = () => {
   const { login } = userContextData();
   const handleLogin = async () => {
     try {
-      console.log(email, password);
       const result = await loginUsers({ email, password });
-      console.log(result);
+      console.log("Ha bhai main hun", result);
       login(result.user);
       navigate("/profile");
     } catch (err) {
@@ -65,7 +64,7 @@ const Login = () => {
               />
               <Typography textAlign="center" variant="body2">
                 Don't have account?{" "}
-                <Link to="signup" style={{ color: "#1976d2" }}>
+                <Link to="/signup" style={{ color: "#1976d2" }}>
                   Signup Here
                 </Link>
               </Typography>

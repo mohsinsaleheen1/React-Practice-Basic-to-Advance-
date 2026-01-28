@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import { UserProvider } from "./Contexts/AuthContext";
 import Profile from "./Pages/Profile";
 import SignupForm from "./Pages/Signup";
+import ProtectedRoute from "./Pages/ProtectedRoute";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
           <Route path="/" element={<Home />}>
             <Route path="signup" element={<SignupForm />} />
             <Route path="login" element={<Login />} />
-            <Route path="profile" element={<Profile />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="profile" element={<Profile />} />
+            </Route>
           </Route>
         </Routes>
       </UserProvider>

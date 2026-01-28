@@ -90,7 +90,7 @@ const SignupForm = () => {
               />
               <Typography textAlign="center" variant="body2">
                 Already have an account?{" "}
-                <Link to="login" style={{ color: "#1976d2" }}>
+                <Link to="/login" style={{ color: "#1976d2" }}>
                   Login here
                 </Link>
               </Typography>
