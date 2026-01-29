@@ -3,3 +3,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+.error {
+  color: red;
+  margin: 0px 0px 0px 0px;
+}
