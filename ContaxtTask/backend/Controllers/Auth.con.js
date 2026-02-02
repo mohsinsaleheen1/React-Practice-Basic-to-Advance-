@@ -7,6 +7,8 @@ dotenv.config();
 const signUp = async (req, res) => {
   try {
     const { firstname, lastname, email, password } = req.body;
+
+    const Useravatar = req.file ? req.file.filename : null;
     const users = await userData.findOne({ email });
     if (users) {
       return res.send({
@@ -21,6 +23,7 @@ const signUp = async (req, res) => {
       lastname,
       email,
       password: hashPassword,
+      avatar: Useravatar,
     });
     const savedUser = await newUser.save();
     res.send({
@@ -67,6 +70,7 @@ const login = async (req, res) => {
         firstname: findUser.firstname,
         lastname: findUser.lastname,
         email: findUser.email,
+        avatar: findUser.avatar,
       },
     });
   } catch (err) {
@@ -93,6 +97,7 @@ const home = async (req, res) => {
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
+        avatar: findUser.avatar,
       },
     });
   } catch (err) {

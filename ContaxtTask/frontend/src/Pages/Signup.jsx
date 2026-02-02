@@ -1,9 +1,10 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import InputFields from "../Components/InputField";
 import Buttons from "../Components/Button";
 import { Signup } from "../Services/Auth/SignupAuth";
+import { FaCloudUploadAlt } from "react-icons/fa";
 const SignupForm = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -13,6 +14,12 @@ const SignupForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [shouldSignup, setShouldSignup] = useState(false);
+  const [file, setFile] = useState(null);
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+    console.log("File select ho gayi:", selectedFile.name);
+  };
   useEffect(() => {
     if (!shouldSignup) return;
     const handleSignup = async () => {
@@ -24,6 +31,7 @@ const SignupForm = () => {
           lastname: lastname,
           email: email,
           password: password,
+          avatar: file,
         });
         console.log(userData);
         setUser(userData);
@@ -84,6 +92,22 @@ const SignupForm = () => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <Button
+                component="label"
+                role={undefined}
+                variant="contained"
+                tabIndex={-1}
+                startIcon={<FaCloudUploadAlt />}
+              >
+                Upload files
+                <input
+                  type="file"
+                  hidden
+                  onChange={handleFileChange}
+                  name="avatar" // Ye Multer walay naam se match hona chahiye
+                />
+              </Button>
+
               <Buttons
                 onClick={() => setShouldSignup(true)}
                 value={isLoading ? "Signup in..." : "Signup"}
@@ -94,8 +118,6 @@ const SignupForm = () => {
                   Login here
                 </Link>
               </Typography>
-              {error && <p style={{ color: "red" }}>{error}</p>}
-              {user && <h2>Welcome, {user.savedUser.firstname}</h2>}
             </Stack>
           </Box>
         </Container>

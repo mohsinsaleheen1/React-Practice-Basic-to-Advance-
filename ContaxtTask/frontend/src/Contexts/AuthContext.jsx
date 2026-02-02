@@ -24,7 +24,6 @@ export const UserProvider = ({ children }) => {
     initAuth();
   }, []);
   const login = (userData) => {
-    console.log("Context Wala Data", userData);
     setUser(userData);
   };
   const logout = async () => {

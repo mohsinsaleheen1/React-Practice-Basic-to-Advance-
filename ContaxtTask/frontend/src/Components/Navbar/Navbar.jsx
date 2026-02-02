@@ -22,13 +22,13 @@ const pages = [
 ];
 
 function ResponsiveAppBar() {
-  const { logout } = userContextData();
+  const { user, logout } = userContextData();
+  const BASE_URL = "http://localhost:5000/uploads/";
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const handleLogout = () => {
-    setIsLoggedIn(true);
+    handleCloseUserMenu();
     logout();
     navigate("/signup");
   };
@@ -46,9 +46,9 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const settings = isLoggedIn
+  const settings = user
     ? [
-        { name: "Profile", action: () => navigate("/profile") },
+        { name: `${user?.firstname}`, action: () => navigate("/profile") },
         { name: "Logout", action: handleLogout },
       ]
     : [
@@ -151,7 +151,10 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt={user?.firstname}
+                  src={user?.avatar ? `${BASE_URL}${user.avatar}` : ""}
+                />
               </IconButton>
             </Tooltip>
             <Menu
