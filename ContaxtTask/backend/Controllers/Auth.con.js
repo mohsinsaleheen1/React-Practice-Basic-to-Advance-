@@ -2,6 +2,7 @@ const userData = require("../Models/auth.js");
 const Jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
+const nodemailer = require("nodemailer");
 const cookieParser = require("cookie-parser");
 dotenv.config();
 const signUp = async (req, res) => {
@@ -108,4 +109,46 @@ const home = async (req, res) => {
     });
   }
 };
-module.exports = { signUp, login, home };
+async function mailSending(req, res) {
+  try {
+    // Create a reusable transporter object using SMTP transport.
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: true, // use false for STARTTLS; true for SSL on port 465
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+    const { name, subject, email, message } = req.body; // Destructure and retrieve data from request body.
+
+    // Validate required fields.
+    if (!name || !subject || !email || !message) {
+      return res
+        .status(400)
+        .json({ status: "error", message: "Missing required fields" });
+    }
+    // Prepare the email message options.
+    const mailOptions = {
+      from: process.env.SENDER_EMAIL, // Sender address from environment variables.
+      to: `${name} <${email}>`, // Recipient's name and email address.
+      replyTo: process.env.REPLY_TO, // Sets the email address for recipient responses.
+      subject: subject, // Subject line.
+      text: message, // Plaintext body.
+    };
+    // Send email and log the response.
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent:", info.response);
+    res
+      .status(200)
+      .json({ status: "success", message: "Email sent successfully" });
+  } catch (err) {
+    res.send({
+      status: 500,
+      message: "user not authorized",
+      err,
+    });
+  }
+}
+module.exports = { signUp, login, home, mailSending };
