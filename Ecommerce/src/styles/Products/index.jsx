@@ -30,7 +30,7 @@ export const ProductActionButton = styled(IconButton)(() => ({
 export const ProductFavButton = styled(ProductActionButton)(
   ({ isfav, theme }) => ({
     color: isfav ? Colors.primary : Colors.light,
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.down("md")]: {
       position: "absolute",
       right: 0,
       top: 0,
@@ -40,7 +40,7 @@ export const ProductFavButton = styled(ProductActionButton)(
 export const ProductAddToCart = styled(Button)(({ show, theme }) => ({
   width: "120px",
   fontSize: "12px",
-  [theme.breakpoints.up("md")]: {
+  [theme.breakpoints.down("md")]: {
     position: "absolute",
     width: "300px",
     padding: "10px 5px",
@@ -59,7 +59,7 @@ export const ProductMetaWrapper = styled(Box)(() => ({
 }));
 export const ProductActionsWrapper = styled(Box)(({ show, theme }) => ({
   [theme.breakpoints.up("md")]: {
-    display: show ? "visible" : "none",
+    display: show ? "block" : "none",
     position: "absolute",
     right: 0,
     top: "20%",
