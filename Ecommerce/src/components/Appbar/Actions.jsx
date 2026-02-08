@@ -1,56 +1,67 @@
 import { Divider, ListItemButton, ListItemIcon } from "@mui/material";
-import { MyList } from "../../styles/AppBar";
+import {
+  ActionIconsContainerDesktop,
+  ActionIconsContainerMobile,
+  MyList,
+} from "../../styles/AppBar";
 import ShoppingCardIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PersonIcon from "@mui/icons-material/Person";
-export const Actions = () => {
+import { Colors } from "../../styles/theme";
+export const Actions = ({ matches }) => {
+  const Component = matches
+    ? ActionIconsContainerMobile
+    : ActionIconsContainerDesktop;
   return (
-    <MyList type="row">
-      <ListItemButton
-        sx={{
-          justifyContent: "center",
-        }}
-      >
-        <ListItemIcon
+    <Component>
+      <MyList type="row">
+        <ListItemButton
           sx={{
-            display: "flex",
             justifyContent: "center",
           }}
         >
-          <ShoppingCardIcon />
-        </ListItemIcon>
-      </ListItemButton>
-      <Divider orientation="vertical" flexItem />
-      <ListItemButton
-        sx={{
-          justifyContent: "center",
-        }}
-      >
-        <ListItemIcon
+          <ListItemIcon
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              color: matches && Colors.secondary,
+            }}
+          >
+            <ShoppingCardIcon />
+          </ListItemIcon>
+        </ListItemButton>
+        <Divider orientation="vertical" flexItem />
+        <ListItemButton
           sx={{
-            display: "flex",
             justifyContent: "center",
           }}
         >
-          <FavoriteIcon />
-        </ListItemIcon>
-      </ListItemButton>
-      <Divider orientation="vertical" flexItem />
-      <ListItemButton
-        sx={{
-          justifyContent: "center",
-        }}
-      >
-        <ListItemIcon
+          <ListItemIcon
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <FavoriteIcon />
+          </ListItemIcon>
+        </ListItemButton>
+        <Divider orientation="vertical" flexItem />
+        <ListItemButton
           sx={{
-            display: "flex",
             justifyContent: "center",
           }}
         >
-          <PersonIcon />
-        </ListItemIcon>
-      </ListItemButton>
-      <Divider orientation="vertical" flexItem />
-    </MyList>
+          <ListItemIcon
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <PersonIcon />
+          </ListItemIcon>
+        </ListItemButton>
+        <Divider orientation="vertical" flexItem />
+      </MyList>
+    </Component>
   );
 };
