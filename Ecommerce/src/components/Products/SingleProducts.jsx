@@ -10,19 +10,29 @@ import {
 import ProductMeta from "./ProductMeta";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
+import FitScreenIcon from "@mui/icons-material/FitScreen";
+import { useState } from "react";
 export default function SingleProducts({ product, matches }) {
+  const [showOptions, setShowOptions] = useState(false);
+
   return (
     <>
-      <Product>
+      <Product
+        onMouseEnter={() => setShowOptions(true)}
+        onMouseLeave={() => setShowOptions(false)}
+      >
         <ProductImage src={product.image}></ProductImage>
         <ProductMeta product={product} matches={matches} />
-        <ProductActionsWrapper>
+        <ProductActionsWrapper show={showOptions || matches}>
           <Stack direction="column">
             <ProductFavButton isfav={1}>
               <FavoriteIcon />
             </ProductFavButton>
             <ProductActionButton>
               <ShareIcon color="primary" />
+            </ProductActionButton>
+            <ProductActionButton>
+              <FitScreenIcon color="primary" />
             </ProductActionButton>
           </Stack>
         </ProductActionsWrapper>
