@@ -1,73 +1,52 @@
-// var a:number = 20;
-// var b:number = 30;
-// var result:number = a+b;
-// console.log(result)
-// ************Boolean******************
-// let isActive:boolean = true;
-// let hasPermission = false;
-// console.log(isActive);
-// console.log(hasPermission)
-// ************Number******************
-// let decimal: number = 6;
-// let hex: number = 0xf00d;       // Hexadecimal
-// let binary: number = 0b1010;     // Binary
-// let octal: number = 0o744;      // Octal
-// let float: number = 3.14; 
-// console.log(decimal);
-// console.log(hex);
-// console.log(binary);
-// console.log(octal);
-// console.log(float);
-// ************String******************
-// let fname: string = "Mohsin";
-// let lname: string = "Saleheen";
-// let age : number = 21;
-// let sentence : string = `My name is ${fname} ${lname} and I am ${age} years old`
-// console.log(sentence)
-// ************Functions******************
-// function greet(name:string): string {
-// return `hello ${name}`
+"use strict";
+// const name :string = "Mohsin";
+// console.log(name)
+// lett name : string = "Ali";
+// console.log(name)
+// let message:string = "Hello World";
+// console.loger(message);
+// let message = "Hello World";
+// message = 6;
+// console.log(message);
+// *******
+//strongly typed syntax
+// let a : string = "Pakistan";
+// a = "USA";
+// let b : number = 9;
+// let c : boolean = true;
+// *******
+//type inference
+// let e = "USA";
+// let f = 10.9;
+// f = 22;
+// let g = false;
+// g = true;
+// *******
+// Union Literals
+// let myname: string | null;
+// myname = null;
+// console.log(myname);
+// myname = "zia";
+// console.log(myname);
+// myname = undefined; //Error
+// myname = 12; //Error
+// let myAge: string | number;
+// myAge = 16;//narrowing
+// console.log(myAge);
+// myAge = "Dont Know";//narrowing
+// console.log(myAge);
+// ********
+// Objects
+// let teacher = {
+//     name: "Zeeshan",
+//     experience: "10"
 // }
-// console.log(greet("Mohsin"));
-// console.log(greet(34));
-// TypeScript infers 'string'
-// let username = "Hassan";
-// // TypeScript infers 'number'
-// let score = 100;
-// // TypeScript infers 'boolean[]'
-// let flags = [true, false, true];
-// // TypeScript infers return type as 'number'
-// function add(a: number, b: number) {
-//   return a + b;
-// }
-// // Log the values to see them in the output
-// console.log(username);
-// console.log(score);
-// console.log(flags);
-// console.log(add(5, 3));
-// let score = 100;  // TypeScript infers 'number'
-// score = "high"; 
-// console.log(score);
-// const data = JSON.parse('{"name":"Mohsin","age":30}');
-// console.log(data)
-// let something;
-// something = "Mohsin";
-// something=20;
-// console.log(something)
-// ************Any******************
-// let v: any = true;
-// v = "String";
-// console.log(Math.round(v))
-var w = 1;
-w = "string"; // no error
-w = {
-    runANonExistentMethod: function () {
-        console.log("I think therefore I am");
-    }
+Object.defineProperty(exports, "__esModule", { value: true });
+let obj1 = {
+    student_id: 3232,
+    name: "rita",
+    teacher_Id: 7873,
+    teacher_name: "seema",
 };
-// How can we avoid the error for the code commented out below when we don't know the type? 
-// w.runANonExistentMethod(); // Error: Object is of type 'unknown'. 
-if (typeof w === 'object' && w !== null) {
-    w.runANonExistentMethod();
-}
-// Although we have to cast multiple times we can do a check in the if to secure our type and have a safer casting
+console.log(obj1.teacher_Id);
+console.log(obj1.teacher_name);
