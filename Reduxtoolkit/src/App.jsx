@@ -1,16 +1,15 @@
-import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "./reduxtoolkit/counterSlice";
-function App() {
-  const mystate = useSelector((state) => state.counter.count);
-  const dispatch = useDispatch();
+import { useDispatch,useSelector } from "react-redux"
+import { increment,decrement } from "./reduxtoolkit/counterSlice"
+const App = () => {
+  const count = useSelector((state)=>state.counter.value)
+  const dispatch = useDispatch()
   return (
-    <>
-      <h1>REDUX TOOL KIT</h1>
-      <button onClick={() => dispatch(increment())}>plus</button>
-      <p>{mystate}</p>
-      <button onClick={() => dispatch(decrement())}>Minus</button>
-    </>
-  );
+    <div>
+      <button onClick={()=>dispatch(increment())}>Increment</button>
+      <h1>{count}</h1>
+      <button onClick={()=>dispatch(decrement())}>Decrement</button>
+    </div>
+  )
 }
 
-export default App;
+export default App
